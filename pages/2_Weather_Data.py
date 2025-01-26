@@ -9,9 +9,9 @@ Base="http://api.weatherapi.com/v1/alerts.json"
 
 # Define Hyperloop route locations
 routes = {
-    "Route 1: City A to City B": ["City A", "City B"],
-    "Route 2: City C to City D": ["City C", "City D"],
-    "Route 3: City E to City F": ["City E", "City F"],
+    "Route 1: Los Angeles to Washington DC": ["Los Angeles", "Washington DC"],
+    "Route 2: Los Angeles to Chicago": ["Los Angeles", "Chicago"],
+    "Route 3: Berlin to Munich": ["Berlin", "Munich"],
 }
 
 # Streamlit app title
@@ -43,8 +43,6 @@ for i in locations:
         st.write(f"**Humidity**: {weather_data['current']['humidity']}%")
 
 
-# df1=pd.DataFrame(combined_data)
-# st.table(df1)
 
 
 # Fetch alert data
@@ -85,12 +83,6 @@ def get_safe_speed(condition):
     """Get safe speed based on weather condition."""
     return speed_limits.get(condition, 800)  # Default to 800 km/h for unknown conditions
 
-# speed=pd.DataFrame(list(speed_limits))
-# st.table(speed)
-# st.subheader('Speed Limit')
-# st.write(get_safe_speed(weather_data['current']['wind_kph']))
-
-
 
 
 def fetch_weather_1(location):
@@ -98,8 +90,6 @@ def fetch_weather_1(location):
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
-        # alerts = data.get("alerts", {}).get("alert", [])
-        # alert_messages = [alert["headline"] for alert in alerts] if alerts else ["No alerts"]
         condition = data["current"]["condition"]["text"]
         return {
             "Location": location,
@@ -107,7 +97,6 @@ def fetch_weather_1(location):
             "Condition": condition,
             "Wind Speed (km/h)": data["current"]["wind_kph"],
             "Humidity (%)": data["current"]["humidity"],
-            # "Alerts": " | ".join(alert_messages),
             "Recommended Speed (km/h)": get_safe_speed(condition),
         }
     else:

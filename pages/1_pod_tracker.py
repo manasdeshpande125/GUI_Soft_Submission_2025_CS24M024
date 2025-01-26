@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from entrypoint import data
+from TAH_GUI import data
 
 st.title("Pod Tracker")
 
