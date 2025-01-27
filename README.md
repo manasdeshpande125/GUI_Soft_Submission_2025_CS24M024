@@ -13,3 +13,4 @@
    ```
 
 I have used /pages concept to implement all 4 questions.
+I have used fun facts on main page itself
