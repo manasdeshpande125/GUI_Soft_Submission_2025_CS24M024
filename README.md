@@ -11,3 +11,5 @@
    ```
    $ streamlit run streamlit_app.py
    ```
+
+I have used /pages concept to implement all 4 questions.
